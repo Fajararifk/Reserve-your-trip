@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java Highlands · 5 Days, 4 Nights — Jakarta · Bandung · Bogor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16231F;
+    --ink-soft:#516057;
+    --paper:#F8F3E6;
+    --card:#FFFFFF;
+    --lake:#1F8C76;
+    --lake-deep:#155F50;
+    --gold:#C98A2E;
+    --forest:#3C5A3F;
+    --line:rgba(22,35,31,0.14);
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:0 0 16px;
+  }
+
+  a.btn{
+    display:inline-block;
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--paper);
+    background:var(--lake-deep);
+    padding:14px 28px;
+    border-radius:2px;
+    transition:transform .15s ease, background .15s ease;
+  }
+  a.btn:hover{background:var(--lake); transform:translateY(-1px);}
+  a.btn:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+
+  /* ---------- HERO ---------- */
+
+  .hero{
+    background:linear-gradient(180deg, var(--ink) 0%, var(--lake-deep) 130%);
+    color:var(--paper);
+    padding:72px 0 56px;
+  }
+
+  .hero .eyebrow{color:#9FE3D2;}
+
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    font-size:clamp(36px, 6.2vw, 60px);
+    line-height:1.05;
+    margin:0 0 20px;
+    letter-spacing:-0.01em;
+    max-width:680px;
+  }
+
+  .hero h1 em{font-style:italic; font-weight:500; color:#9FE3D2;}
+
+  .hero p.lede{
+    font-size:18px;
+    max-width:520px;
+    color:rgba(248,243,230,0.86);
+    margin:0 0 34px;
+  }
+
+  .route-strip{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    align-items:center;
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    color:#9FE3D2;
+    margin-bottom:36px;
+  }
+  .route-strip .stop{white-space:nowrap;}
+  .route-strip .stop .alt{display:block; font-size:10px; color:rgba(159,227,210,0.65);}
+  .route-strip .arrow{opacity:0.6;}
+
+  /* ---------- BADGES ---------- */
+
+  .badges{
+    background:var(--card);
+    border-bottom:1px solid var(--line);
+  }
+  .badges ul{
+    list-style:none;
+    margin:0; padding:22px 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:22px 34px;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--forest);
+  }
+  .badges li::before{content:"— "; color:var(--gold);}
+
+  /* ---------- HIGHLIGHTS ---------- */
+
+  .highlights{padding:64px 0 16px;}
+  .section-head h2{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    font-size:clamp(26px,4vw,36px);
+    margin:0 0 8px;
+  }
+  .section-head p{color:var(--ink-soft); max-width:540px; margin:0 0 36px;}
+
+  .highlight-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-bottom:8px;
+  }
+  .highlight{
+    background:var(--card);
+    padding:26px 22px;
+  }
+  .highlight .tag{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--gold);
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  .highlight h3{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    font-size:19px;
+    margin:10px 0 8px;
+  }
+  .highlight p{font-size:14px; color:var(--ink-soft); margin:0;}
+
+  /* ---------- ITINERARY TEASER ---------- */
+
+  .itinerary{padding:64px 0;}
+  .day-strip{
+    display:flex;
+    overflow-x:auto;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    scrollbar-width:thin;
+  }
+  .day{
+    background:var(--card);
+    flex:1 0 200px;
+    padding:22px 20px;
+  }
+  .day .d{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--lake-deep);
+    letter-spacing:0.06em;
+  }
+  .day h4{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    font-size:17px;
+    margin:8px 0 8px;
+  }
+  .day p{font-size:13.5px; color:var(--ink-soft); margin:0;}
+
+  /* ---------- PRICING / TICKETS ---------- */
+
+  .pricing{
+    background:var(--ink);
+    color:var(--paper);
+    padding:68px 0 76px;
+  }
+  .pricing .section-head h2{color:var(--paper);}
+  .pricing .section-head p{color:rgba(248,243,230,0.7);}
+
+  .ticket-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+  }
+
+  .ticket{
+    position:relative;
+    background:var(--card);
+    color:var(--ink);
+    border-radius:4px;
+    display:flex;
+    overflow:hidden;
+  }
+
+  .ticket-main{
+    flex:1;
+    padding:28px 24px;
+  }
+  .ticket-main .veh{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--lake-deep);
+  }
+  .ticket-main h3{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    font-size:26px;
+    margin:8px 0 12px;
+  }
+  .ticket-main p{font-size:13.5px; color:var(--ink-soft); margin:0;}
+
+  .ticket-stub{
+    position:relative;
+    flex:0 0 168px;
+    background:#F1ECDC;
+    border-left:2px dashed rgba(22,35,31,0.3);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:20px 14px;
+    text-align:center;
+  }
+  .ticket-stub::before, .ticket-stub::after{
+    content:"";
+    position:absolute;
+    left:-12px;
+    width:24px; height:24px;
+    border-radius:50%;
+    background:var(--ink);
+  }
+  .ticket-stub::before{top:-12px;}
+  .ticket-stub::after{bottom:-12px;}
+
+  .ticket-stub .price{
+    font-family:'Fraunces', serif;
+    font-weight:680;
+    font-size:21px;
+    line-height:1.15;
+    margin-bottom:4px;
+  }
+  .ticket-stub .alt{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  .ticket-stub .min{
+    font-family:'Space Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--forest);
+    margin-bottom:14px;
+  }
+  .ticket-stub a.btn{font-size:11px; padding:10px 16px;}
+
+  /* ---------- FOOTER ---------- */
+
+  .foot{
+    padding:40px 0 56px;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  .foot strong{color:var(--ink);}
+  .foot .contact{
+    margin-top:18px;
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    color:var(--lake-deep);
+  }
+
+  @media (max-width:760px){
+    .highlight-grid{grid-template-columns:1fr 1fr;}
+    .ticket-row{grid-template-columns:1fr;}
+  }
+
+  @media (max-width:500px){
+    .wrap{padding:0 18px;}
+    .hero{padding:52px 0 40px;}
+    .highlight-grid{grid-template-columns:1fr;}
+    .ticket{flex-direction:column;}
+    .ticket-stub{flex:none; border-left:none; border-top:2px dashed rgba(22,35,31,0.3);}
+    .ticket-stub::before, .ticket-stub::after{left:50%; top:-12px; transform:translateX(-50%);}
+    .ticket-stub::after{bottom:auto; top:auto; left:50%; transform:translateX(-50%);}
+  }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">5 Days · 4 Nights · West Java</p>
+      <h1>From Sea Level to <em>2,194 Metres</em> — and Back</h1>
+      <p class="lede">One trip, three faces of Java: the capital's monuments, a turquoise sulphur crater, a market that floats, and a sunset drive through tea hills.</p>
+
+      <div class="route-strip">
+        <span class="stop">JAKARTA<span class="alt">8m</span></span>
+        <span class="arrow">→</span>
+        <span class="stop">BANDUNG / LEMBANG<span class="alt">1,312m</span></span>
+        <span class="arrow">→</span>
+        <span class="stop">CIWIDEY<span class="alt">2,194m</span></span>
+        <span class="arrow">→</span>
+        <span class="stop">BOGOR<span class="alt">190m</span></span>
+        <span class="arrow">→</span>
+        <span class="stop">JAKARTA<span class="alt">8m</span></span>
+      </div>
+
+      <a class="btn" href="#pricing">See prices &amp; reserve</a>
+    </div>
+  </header>
+
+  <section class="badges">
+    <div class="wrap">
+      <ul>
+        <li>3-Star Hotels</li>
+        <li>Daily Meals</li>
+        <li>Private Vehicle</li>
+        <li>English-Speaking Driver</li>
+        <li>Entrance Tickets Included</li>
+        <li>Tipping Free</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="highlights">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What you'll actually see</h2>
+        <p>Four moments worth the whole trip — not staged, not a photo filter.</p>
+      </div>
+      <div class="highlight-grid">
+        <div class="highlight">
+          <p class="tag">Ciwidey</p>
+          <h3>A Lake That Changes Colour</h3>
+          <p>Kawah Putih's milky turquoise crater, formed by an old volcanic eruption — walk right up to the sulphur shoreline.</p>
+        </div>
+        <div class="highlight">
+          <p class="tag">Lembang</p>
+          <h3>Lunch on the Water</h3>
+          <p>Floating Market's boats and bamboo rafts serve up West Javanese street food right where you're sitting.</p>
+        </div>
+        <div class="highlight">
+          <p class="tag">Rancabali</p>
+          <h3>370 Metres of Nerve</h3>
+          <p>Rengganis Suspension Bridge — one of Southeast Asia's longest — strung across a tea-covered valley.</p>
+        </div>
+        <div class="highlight">
+          <p class="tag">Bogor</p>
+          <h3>Lions at Arm's Length</h3>
+          <p>Drive straight through Taman Safari's open enclosures — no glass, no fences, just your car window.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="itinerary">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Day by day</h2>
+        <p>Five days, three regions — paced to give every stop real time, not a drive-by.</p>
+      </div>
+      <div class="day-strip">
+        <div class="day">
+          <p class="d">Day 1 — Jakarta</p>
+          <h4>The Capital</h4>
+          <p>Monas, Istiqlal, and the city's grand malls. Settle in before heading for the hills.</p>
+        </div>
+        <div class="day">
+          <p class="d">Day 2 — Lembang</p>
+          <h4>Up to the Highlands</h4>
+          <p>Floating Market, The Lodge Maribaya's pine forest, an evening at Rumah Mode.</p>
+        </div>
+        <div class="day">
+          <p class="d">Day 3 — Ciwidey → Bogor</p>
+          <h4>Crater and Crossing</h4>
+          <p>Kawah Putih at sunrise, Rengganis Suspension Bridge, then a scenic drive through Puncak's tea estates.</p>
+        </div>
+        <div class="day">
+          <p class="d">Day 4 — Bogor</p>
+          <h4>Wild Java</h4>
+          <p>A full day at Taman Safari, a quick stop at a local waterfall before heading back to Jakarta.</p>
+        </div>
+        <div class="day">
+          <p class="d">Day 5 — Jakarta</p>
+          <h4>Last Stop, Souvenirs</h4>
+          <p>Breakfast, a final stroll through Pasar Baru, then off to the airport.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Reserve your trip</h2>
+        <p>Per person, all-inclusive. Choose by group size — both run the exact same itinerary.</p>
+      </div>
+      <div class="ticket-row">
+
+        <div class="ticket">
+          <div class="ticket-main">
+            <p class="veh">Group of 12</p>
+            <h3>HiAce</h3>
+            <p>One private microbus for the whole group — everyone travels together, door to door.</p>
+          </div>
+          <div class="ticket-stub">
+            <div class="price">Rp 5.1–5.5M</div>
+            <div class="alt">≈ RM 1,167–1,259</div>
+            <div class="min">Min. 12 pax</div>
+            <a class="btn" href="#contact">Reserve</a>
+          </div>
+        </div>
+
+        <div class="ticket">
+          <div class="ticket-main">
+            <p class="veh">Group of 5</p>
+            <h3>Avanza</h3>
+            <p>A smaller, more intimate ride for tighter groups and faster stops at every site.</p>
+          </div>
+          <div class="ticket-stub">
+            <div class="price">Rp 5.85–6.2M</div>
+            <div class="alt">≈ RM 1,339–1,419</div>
+            <div class="min">5 pax</div>
+            <a class="btn" href="#contact">Reserve</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot" id="contact">
+    <div class="wrap">
+      <p><strong>Note:</strong> accommodation is 3-star throughout; specific hotels are confirmed at booking based on availability. Prices in IDR; RM shown for reference only and may shift with the exchange rate.</p>
+      <p class="contact">Reserve via WhatsApp: +6289638996040 · </p>
+    </div>
+  </footer>
+
+</body>
+</html>
