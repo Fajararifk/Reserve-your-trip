@@ -158,6 +158,38 @@
     margin:10px 0 8px;
   }
   .highlight p{font-size:14px; color:var(--ink-soft); margin:0;}
+/* ---------- FLEXIBLE NOTE ---------- */
+
+  .flex-note{
+    background:var(--card);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:46px 0;
+  }
+  .flex-note .inner{
+    display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+    align-items:flex-start;
+  }
+  .flex-note .inner > div{flex:1; min-width:240px;}
+  .flex-note h3{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    font-size:23px;
+    margin:0 0 4px;
+  }
+  .flex-note .badge{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:0 0 10px;
+    display:block;
+  }
+  .flex-note p{font-size:14.5px; color:var(--ink-soft); margin:0; max-width:560px;}
+  .flex-note p strong{color:var(--ink);}
 
   /* ---------- ITINERARY TEASER ---------- */
 
